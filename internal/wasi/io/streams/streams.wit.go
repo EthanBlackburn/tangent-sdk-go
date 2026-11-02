@@ -10,8 +10,8 @@
 package streams
 
 import (
-	ioerror "github.com/telophasehq/tangent-sdk-go/internal/wasi/io/error"
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/io/poll"
+	ioerror "github.com/ethanblackburn/tangent-sdk-go/internal/wasi/io/error"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/io/poll"
 	"go.bytecodealliance.org/cm"
 )
 

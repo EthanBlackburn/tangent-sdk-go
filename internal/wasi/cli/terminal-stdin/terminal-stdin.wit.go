@@ -7,7 +7,7 @@
 package terminalstdin
 
 import (
-	terminalinput "github.com/telophasehq/tangent-sdk-go/internal/wasi/cli/terminal-input"
+	terminalinput "github.com/ethanblackburn/tangent-sdk-go/internal/wasi/cli/terminal-input"
 	"go.bytecodealliance.org/cm"
 )
 

@@ -1,7 +1,7 @@
 package lock
 
 import (
-	internallock "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/lock"
+	internallock "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/lock"
 )
 
 func Acquire(key string) bool {

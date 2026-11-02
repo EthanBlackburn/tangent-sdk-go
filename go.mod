@@ -1,4 +1,4 @@
-module github.com/telophasehq/tangent-sdk-go
+module github.com/ethanblackburn/tangent-sdk-go
 
 go 1.24.0
 

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/remote"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/remote"
 	"go.bytecodealliance.org/cm"
 )
 

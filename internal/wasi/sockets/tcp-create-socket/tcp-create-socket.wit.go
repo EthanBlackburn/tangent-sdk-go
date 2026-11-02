@@ -4,8 +4,8 @@
 package tcpcreatesocket
 
 import (
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/sockets/network"
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/sockets/tcp"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/sockets/network"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/sockets/tcp"
 	"go.bytecodealliance.org/cm"
 )
 

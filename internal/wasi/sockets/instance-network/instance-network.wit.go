@@ -4,7 +4,7 @@
 package instancenetwork
 
 import (
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/sockets/network"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/sockets/network"
 	"go.bytecodealliance.org/cm"
 )
 

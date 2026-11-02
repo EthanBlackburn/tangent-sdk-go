@@ -89,10 +89,10 @@ func main() {
 }
 
 // findWireOutputType searches the package's syntax for a call to
-// github.com/telophasehq/tangent-sdk-go.Wire[T](...) and returns the
+// github.com/ethanblackburn/tangent-sdk-go.Wire[T](...) and returns the
 // name of T and its underlying struct type. Only named struct types are supported.
 func findWireOutputTypes(pkg *packages.Package) map[*types.Named]*types.Struct {
-	const tangentImportPath = "github.com/telophasehq/tangent-sdk-go"
+	const tangentImportPath = "github.com/ethanblackburn/tangent-sdk-go"
 	out := map[*types.Named]*types.Struct{}
 	for _, f := range pkg.Syntax {
 		ast.Inspect(f, func(n ast.Node) bool {

@@ -5,10 +5,10 @@ import (
 	"errors"
 	"sync"
 
+	"github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/log"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/mapper"
 	"github.com/mailru/easyjson"
 	"github.com/mailru/easyjson/jwriter"
-	"github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/log"
-	"github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/mapper"
 
 	"go.bytecodealliance.org/cm"
 )

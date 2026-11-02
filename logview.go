@@ -1,6 +1,6 @@
 package tangent_sdk
 
-import "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/log"
+import "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/log"
 
 type Log struct {
 	logview log.Logview

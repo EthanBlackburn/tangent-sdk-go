@@ -4,7 +4,7 @@
 package stdout
 
 import (
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/io/streams"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/io/streams"
 	"go.bytecodealliance.org/cm"
 )
 

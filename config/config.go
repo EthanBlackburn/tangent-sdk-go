@@ -1,7 +1,7 @@
 package config
 
 import (
-	internalconfig "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/config"
+	internalconfig "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/config"
 )
 
 // Get returns the current Value stored at key.
