@@ -1,12 +1,14 @@
+// Package cache is the store tangent called its cache before naming it state.
+// Its calls go to package state.
+//
+// Deprecated: use package state.
 package cache
 
 import (
-	"errors"
-	"fmt"
 	"time"
 
-	internalcache "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/cache"
 	internallog "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/log"
+	"github.com/ethanblackburn/tangent-sdk-go/state"
 	"go.bytecodealliance.org/cm"
 )
 
@@ -84,93 +86,23 @@ func (v Value) AsBytes() ([]byte, bool) {
 
 // Get returns the current Value stored at key.
 // ok will be false when the key is missing.
+//
+// Deprecated: use state.Get.
 func Get(key string) (interface{}, bool, error) {
-	result := internalcache.Get(key)
-	if result.IsErr() {
-		return nil, false, errors.New(*result.Err())
-	}
-
-	opt := result.OK()
-	if opt.None() {
-		return nil, false, nil
-	}
-
-	scalar := opt.Value()
-	if b := scalar.Boolean(); b != nil {
-		return *b, true, nil
-	}
-	if bytes := scalar.Bytes(); bytes != nil {
-		return append([]byte(nil), bytes.Slice()...), true, nil
-	}
-	if f := scalar.Float(); f != nil {
-		return *f, true, nil
-	}
-	if i := scalar.Int(); i != nil {
-		return *i, true, nil
-	}
-	if s := scalar.Str(); s != nil {
-		return *s, true, nil
-	}
-
-	return nil, false, errors.New("unknown value type")
+	return state.Get(key)
 }
 
-// Set stores value at key. If ttl is nil the value never expires. When ttl is
-// provided it is rounded down to the nearest millisecond before being sent to
-// the host.
+// Set stores value at key. A nil ttl takes the pipeline's default and a ttl of
+// 0 never expires; see package state.
+//
+// Deprecated: use state.Set.
 func Set(key string, value interface{}, ttl *time.Duration) error {
-	var ttlOpt cm.Option[uint64]
-
-	if ttl == nil {
-		ttlOpt = cm.None[uint64]()
-	} else {
-		if ttl.Milliseconds() < 0 {
-			return fmt.Errorf("ttl must be >= 0")
-		}
-		ms := uint64(ttl.Milliseconds())
-		ttlOpt = cm.Some(ms)
-	}
-
-	var scalarVal internalcache.Scalar
-	switch value := value.(type) {
-	case bool:
-		scalarVal = internallog.ScalarBoolean(value)
-	case int:
-		scalarVal = internallog.ScalarInt(int64(value))
-	case int16:
-		scalarVal = internallog.ScalarInt(int64(value))
-	case int32:
-		scalarVal = internallog.ScalarInt(int64(value))
-	case int64:
-		scalarVal = internallog.ScalarInt(int64(value))
-	case float32:
-		scalarVal = internallog.ScalarFloat(float64(value))
-	case float64:
-		scalarVal = internallog.ScalarFloat(value)
-	case string:
-		scalarVal = internallog.ScalarStr(value)
-	case []uint8:
-		scalarVal = internallog.ScalarBytes(cm.ToList(value))
-	}
-
-	result := internalcache.Set(key, scalarVal, ttlOpt)
-	if result.IsErr() {
-		return errors.New(*result.Err())
-	}
-
-	return nil
+	return state.Set(key, value, ttl)
 }
 
-// Delete removes key from the cache and reports whether the key previously
-// existed.
+// Delete removes key and reports whether the key previously existed.
+//
+// Deprecated: use state.Delete.
 func Delete(key string) (bool, error) {
-	result := internalcache.Del(key)
-	if result.IsErr() {
-		return false, errors.New(*result.Err())
-	}
-	ok := result.OK()
-	if ok == nil {
-		return false, errors.New("cache: delete returned nil success flag")
-	}
-	return *ok, nil
+	return state.Delete(key)
 }
