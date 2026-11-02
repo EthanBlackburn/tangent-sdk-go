@@ -3,7 +3,7 @@
 package types
 
 import (
-	wallclock "github.com/telophasehq/tangent-sdk-go/internal/wasi/clocks/wall-clock"
+	wallclock "github.com/ethanblackburn/tangent-sdk-go/internal/wasi/clocks/wall-clock"
 	"go.bytecodealliance.org/cm"
 	"unsafe"
 )

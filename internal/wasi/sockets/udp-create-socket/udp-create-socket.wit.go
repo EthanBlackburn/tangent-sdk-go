@@ -4,8 +4,8 @@
 package udpcreatesocket
 
 import (
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/sockets/network"
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/sockets/udp"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/sockets/network"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/sockets/udp"
 	"go.bytecodealliance.org/cm"
 )
 

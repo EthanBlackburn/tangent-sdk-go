@@ -4,7 +4,7 @@
 package monotonicclock
 
 import (
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/io/poll"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/io/poll"
 	"go.bytecodealliance.org/cm"
 )
 

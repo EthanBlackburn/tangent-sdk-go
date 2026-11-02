@@ -7,7 +7,7 @@
 package terminalstdout
 
 import (
-	terminaloutput "github.com/telophasehq/tangent-sdk-go/internal/wasi/cli/terminal-output"
+	terminaloutput "github.com/ethanblackburn/tangent-sdk-go/internal/wasi/cli/terminal-output"
 	"go.bytecodealliance.org/cm"
 )
 

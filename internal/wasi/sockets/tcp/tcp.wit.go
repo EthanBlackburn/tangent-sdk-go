@@ -4,10 +4,10 @@
 package tcp
 
 import (
-	monotonicclock "github.com/telophasehq/tangent-sdk-go/internal/wasi/clocks/monotonic-clock"
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/io/poll"
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/io/streams"
-	"github.com/telophasehq/tangent-sdk-go/internal/wasi/sockets/network"
+	monotonicclock "github.com/ethanblackburn/tangent-sdk-go/internal/wasi/clocks/monotonic-clock"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/io/poll"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/io/streams"
+	"github.com/ethanblackburn/tangent-sdk-go/internal/wasi/sockets/network"
 	"go.bytecodealliance.org/cm"
 )
 

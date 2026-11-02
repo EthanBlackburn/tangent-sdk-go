@@ -1,6 +1,6 @@
 package tangent_sdk
 
-import "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/mapper"
+import "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/mapper"
 
 // Metadata describes a plugin's identifying information.
 type Metadata struct {

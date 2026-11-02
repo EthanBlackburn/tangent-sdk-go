@@ -1,6 +1,6 @@
 package helpers
 
-import "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/log"
+import "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/log"
 
 func GetBool(v log.Logview, path string) *bool {
 	opt := v.Get(path)

@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	internalcache "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/cache"
-	internallog "github.com/telophasehq/tangent-sdk-go/internal/tangent/logs/log"
+	internalcache "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/cache"
+	internallog "github.com/ethanblackburn/tangent-sdk-go/internal/tangent/logs/log"
 	"go.bytecodealliance.org/cm"
 )
 
