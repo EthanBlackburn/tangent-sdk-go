@@ -18,6 +18,18 @@ var Exports struct {
 	//	probe: func() -> list<selector>
 	Probe func() (result cm.List[Selector])
 
+	// OutputSchema represents the caller-defined, exported function "output-schema".
+	//
+	// One output record's shape, as a JSON Schema (2020-12): the fields every
+	// record the plugin writes has or may have, and their types, derived from
+	// the type the plugin writes. A sink fed by the plugin is checked against
+	// it when the pipeline is built, and `tangent plugin test` checks each
+	// fixture's output against it. A plugin that passes records on as they
+	// came returns `{}`, and what feeds it is checked in its place.
+	//
+	//	output-schema: func() -> string
+	OutputSchema func() (result string)
+
 	// ProcessLogs represents the caller-defined, exported function "process-logs".
 	//
 	//	process-logs: func(input: list<logview>) -> result<list<u8>, string>
