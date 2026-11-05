@@ -27,3 +27,15 @@ func wasmimport_Incr(key0 *uint8, key1 uint32, by0 uint64, ttlMs0 uint32, ttlMs1
 //go:wasmimport tangent:logs/state@0.1.0 scan
 //go:noescape
 func wasmimport_Scan(start0 *uint8, start1 uint32, end0 *uint8, end1 uint32, limit0 uint32, result *cm.Result[cm.List[cm.Tuple[string, Scalar]], cm.List[cm.Tuple[string, Scalar]], string])
+
+//go:wasmimport tangent:logs/state@0.1.0 begin
+//go:noescape
+func wasmimport_Begin(result *cm.Result[string, struct{}, string])
+
+//go:wasmimport tangent:logs/state@0.1.0 commit
+//go:noescape
+func wasmimport_Commit(result *cm.Result[string, struct{}, string])
+
+//go:wasmimport tangent:logs/state@0.1.0 rollback
+//go:noescape
+func wasmimport_Rollback()
