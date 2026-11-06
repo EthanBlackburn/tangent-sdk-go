@@ -347,7 +347,10 @@ func runEasyJSONTypesOnly(pkg *packages.Package, gens map[*types.Named]*types.St
 			return err
 		}
 
-		cmd := exec.Command("go", "run", "github.com/mailru/easyjson/easyjson@latest", "-all", ".")
+		// No @version: run the easyjson the plugin's module already
+		// requires, so the generator matches the library the generated
+		// code links against and works offline from the module cache.
+		cmd := exec.Command("go", "run", "github.com/mailru/easyjson/easyjson", "-all", ".")
 		cmd.Dir = tmp
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
