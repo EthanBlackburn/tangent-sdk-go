@@ -61,7 +61,8 @@ func main() {
 
 	cfg := &packages.Config{
 		Mode: packages.NeedName | packages.NeedFiles | packages.NeedSyntax |
-			packages.NeedCompiledGoFiles | packages.NeedTypes | packages.NeedTypesInfo,
+			packages.NeedCompiledGoFiles | packages.NeedTypes | packages.NeedTypesInfo |
+			packages.NeedImports | packages.NeedDeps,
 		Dir: ".",
 	}
 	pkgs, err := packages.Load(cfg, ".")
