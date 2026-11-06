@@ -57,7 +57,8 @@ func (v Log) GetString(path string) *string {
 }
 
 func (v Log) Len(path string) *uint32 {
-	return v.Len(path)
+	opt := v.logview.Len(path)
+	return opt.Some()
 }
 
 func (v Log) GetStringList(path string) ([]string, bool) {
