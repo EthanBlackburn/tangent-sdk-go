@@ -83,3 +83,39 @@ func Scan(start string, end string, limit uint32) (result cm.Result[cm.List[cm.T
 	wasmimport_Scan((*uint8)(start0), (uint32)(start1), (*uint8)(end0), (uint32)(end1), (uint32)(limit0), &result)
 	return
 }
+
+// Begin represents the imported function "begin".
+//
+// Begins a transaction: the state calls after it see each other's
+// writes, and land together on `commit` or not at all on `rollback`. No
+// other state call runs while it is open, so begin late and commit early.
+// A second `begin`, or a remote call, inside one fails; a call that
+// returns with one open has it rolled back.
+//
+//	begin: func() -> result<_, string>
+//
+//go:nosplit
+func Begin() (result cm.Result[string, struct{}, string]) {
+	wasmimport_Begin(&result)
+	return
+}
+
+// Commit represents the imported function "commit".
+//
+//	commit: func() -> result<_, string>
+//
+//go:nosplit
+func Commit() (result cm.Result[string, struct{}, string]) {
+	wasmimport_Commit(&result)
+	return
+}
+
+// Rollback represents the imported function "rollback".
+//
+//	rollback: func()
+//
+//go:nosplit
+func Rollback() {
+	wasmimport_Rollback()
+	return
+}
