@@ -9,6 +9,10 @@
 // default (runtime.state.default_ttl_ms, 10 minutes unless configured), 0
 // never expires, and anything else is rounded down to the millisecond. The
 // runtime caps a default or explicit ttl at runtime.state.max_ttl_ms.
+//
+// Each call stands alone: two workers running the plugin can interleave one's
+// read with the other's write. To read a key and write back something that
+// depends on it, do both inside Transaction, or between Begin and Commit.
 package state
 
 import (
@@ -118,6 +122,47 @@ func Scan(start, end string, limit uint32) ([]Entry, error) {
 		entries = append(entries, Entry{Key: kv.F0, Value: value})
 	}
 	return entries, nil
+}
+
+// Begin starts a transaction: the state calls after it see each other's
+// writes, and land together on Commit or not at all on Rollback. No other
+// state call in the pipeline runs while it is open, so begin late and commit
+// early. A second Begin, or a remote call, inside one fails, and a call to the
+// plugin that returns with one open has it rolled back.
+func Begin() error {
+	result := internalstate.Begin()
+	if result.IsErr() {
+		return errors.New(*result.Err())
+	}
+	return nil
+}
+
+// Commit keeps the open transaction's writes.
+func Commit() error {
+	result := internalstate.Commit()
+	if result.IsErr() {
+		return errors.New(*result.Err())
+	}
+	return nil
+}
+
+// Rollback undoes the open transaction's writes.
+func Rollback() {
+	internalstate.Rollback()
+}
+
+// Transaction runs fn in a transaction: committed when fn returns nil, rolled
+// back when it returns an error, which Transaction returns. If fn panics, the
+// plugin's call fails and the runtime rolls the transaction back.
+func Transaction(fn func() error) error {
+	if err := Begin(); err != nil {
+		return err
+	}
+	if err := fn(); err != nil {
+		Rollback()
+		return err
+	}
+	return Commit()
 }
 
 func ttlOption(ttl *time.Duration) (cm.Option[uint64], error) {
