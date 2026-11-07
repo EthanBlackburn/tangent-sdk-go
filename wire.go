@@ -34,6 +34,17 @@ func Wire[T any](meta Metadata, selectors []Selector, handler ProcessLog[T], bat
 		return cm.ToList(mapped)
 	}
 
+	// The schema tangentgen wrote for T from its fields and json tags. Without
+	// it (tangentgen did not run) the text is not JSON, and the runtime says
+	// so when it loads the plugin.
+	mapper.Exports.OutputSchema = func() string {
+		var zero T
+		if s, ok := any(zero).(interface{ TangentOutputSchema() string }); ok {
+			return s.TangentOutputSchema()
+		}
+		return "no output schema: T has no TangentOutputSchema method. Did you recompile?"
+	}
+
 	mapper.Exports.ProcessLogs = func(input cm.List[log.Logview]) (res cm.Result[cm.List[uint8], cm.List[uint8], string]) {
 		buf := bufPool.Get().(*bytes.Buffer)
 		buf.Reset()

@@ -24,6 +24,14 @@ func wasmexport_Probe() (result *cm.List[Selector]) {
 	return
 }
 
+//go:wasmexport tangent:logs/mapper@0.1.0#output-schema
+//export tangent:logs/mapper@0.1.0#output-schema
+func wasmexport_OutputSchema() (result *string) {
+	result_ := Exports.OutputSchema()
+	result = &result_
+	return
+}
+
 //go:wasmexport tangent:logs/mapper@0.1.0#process-logs
 //export tangent:logs/mapper@0.1.0#process-logs
 func wasmexport_ProcessLogs(input0 *Logview, input1 uint32) (result *cm.Result[cm.List[uint8], cm.List[uint8], string]) {

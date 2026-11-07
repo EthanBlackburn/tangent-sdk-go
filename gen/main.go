@@ -87,6 +87,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("easyjson generate failed: %v", err)
 	}
+	if err := writeSchemas(pkg, toGenerate); err != nil {
+		log.Fatalf("output schema: %v", err)
+	}
 }
 
 // findWireOutputType searches the package's syntax for a call to
